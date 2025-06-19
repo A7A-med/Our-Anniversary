@@ -54,6 +54,13 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 
+window.addEventListener('touchstart', () => {
+  const video = document.getElementById('bg-video');
+  if (video && video.paused) {
+    video.play().catch(() => {}); // Ignore autoplay errors silently
+  }
+}, { once: true });
+
 
 
 window.addEventListener('load', () => {

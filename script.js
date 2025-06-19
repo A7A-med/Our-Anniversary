@@ -106,6 +106,13 @@ function createHeart(x, y) {
     }
   });
   
+  window.addEventListener('touchstart', () => {
+    const video = document.getElementById('bg-video');
+    if (video && video.paused) {
+      video.play().catch(() => {}); // Ignore autoplay errors silently
+    }
+  }, { once: true });
+  
 
   const vid = document.getElementById('bg-video');
   vid.addEventListener('timeupdate', () => {
