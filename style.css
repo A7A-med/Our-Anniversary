@@ -213,6 +213,7 @@ span.heart-trail::before {
 @media (max-width: 768px) {
   h1 {
     font-size: 3rem;
+    font-weight: 700;
   }
 
   h2 {
