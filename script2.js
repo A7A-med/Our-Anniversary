@@ -95,6 +95,35 @@ window.addEventListener('load', () => {
 
 
 
+window.addEventListener('load', () => {
+  const video = document.getElementById('bg-video');
+  if (!video) return;
+
+  // إعادة تحميل فعلي للتغلب على تحميل ناقص
+  video.load();
+
+  // حاول تشغيله فورًا
+  video.play().catch(() => {
+    // لو فشل، انتظر تفاعل المستخدم
+    const tryPlay = () => {
+      video.play().catch(() => {});
+      window.removeEventListener('touchstart', tryPlay);
+      window.removeEventListener('click', tryPlay);
+    };
+    window.addEventListener('touchstart', tryPlay);
+    window.addEventListener('click', tryPlay);
+  });
+
+  // خدعة repaint لسد خلل Safari
+  video.style.display = 'none';
+  void video.offsetHeight;
+  video.style.display = '';
+});
+
+
+
+
+
 
 
 function createHeart(x, y) {
