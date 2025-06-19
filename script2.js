@@ -70,6 +70,26 @@ window.addEventListener('load', () => {
     loader.style.transition = 'opacity 0.5s ease';
     setTimeout(() => loader.remove(), 500);
   }
+
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      loader.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => loader.remove(), 500);
+    }
+  
+    // حل لمشكلة الفيديو في iPhone - إجبار التشغيل وrepaint
+    const video = document.getElementById('bg-video');
+    if (video) {
+      video.play().catch(() => {});
+      video.style.display = 'none';
+      video.offsetHeight; // force reflow
+      video.style.display = '';
+    }
+  });
+  
+
 });
 
 
