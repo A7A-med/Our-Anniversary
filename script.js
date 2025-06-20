@@ -35,7 +35,7 @@ function updateCountdown() {
     containerEl.classList.remove("celebration-mode");
     countdownEl.style.display = "flex";
     titleEl.innerText = "Ahmed & Basant";
-    subtitleEl.innerText = "A Year Of Love Behind Us, A Forever To Build Together";
+    subtitleEl.innerText = "Almost a year of love behind us, and a forever still ahead";
 
     const days = Math.floor(diff / MS_IN_DAY);
     const hours = Math.floor((diff % MS_IN_DAY) / (1000 * 60 * 60));
