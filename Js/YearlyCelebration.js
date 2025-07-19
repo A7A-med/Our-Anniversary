@@ -5,67 +5,51 @@ window.addEventListener('load', () => {
       loader.style.transition = 'opacity 0.5s ease';
       setTimeout(() => loader.remove(), 500);
     }
-
+  
     const video = document.getElementById('bg-video');
-    if (video) {
-      video.load();
-      video.play().catch(() => {
-        const tryPlay = () => {
-          video.play().catch(() => {});
-          window.removeEventListener('touchstart', tryPlay);
-          window.removeEventListener('click', tryPlay);
-        };
-        window.addEventListener('touchstart', tryPlay);
-        window.addEventListener('click', tryPlay);
-      });
-      video.style.display = 'none';
-      void video.offsetHeight;
-      video.style.display = '';
-    }
+    if (!video) return;
+  
+    const START_TIME = 2.0;
+    const END_THRESHOLD = 0.3;
+  
+    // إعادة تحميل للفيديو (علاج مشاكل الموبايل)
+    video.load();
+  
+    // تشغيل فوري أو انتظار تفاعل المستخدم
+    video.play().catch(() => {
+      const tryPlay = () => {
+        video.play().catch(() => {});
+        window.removeEventListener('touchstart', tryPlay);
+        window.removeEventListener('click', tryPlay);
+      };
+      window.addEventListener('touchstart', tryPlay);
+      window.addEventListener('click', tryPlay);
+    });
+  
+    // خدعة Safari
+    video.style.display = 'none';
+    void video.offsetHeight;
+    video.style.display = '';
+  
+    // أول ما يتحمل الفيديو نبدأ من ثانية 2
+    video.addEventListener('loadedmetadata', () => {
+      if (video.duration > START_TIME) {
+        video.currentTime = START_TIME;
+      }
+    });
+  
+    // لوب يدوي ناعم
+    video.addEventListener('timeupdate', () => {
+      if (video.duration - video.currentTime < END_THRESHOLD) {
+        video.currentTime = START_TIME;
+        video.play().catch(() => {});
+      }
+    });
   });
-
-
-
-
-  const vid = document.getElementById('bg-video');
-  const START_OFFSET = 2.2; // ثانية من البداية
-  const END_OFFSET = 0;   // ثانية من النهاية
-  
-  vid.loop = false;
-  
-  vid.addEventListener('loadedmetadata', () => {
-    if (vid.duration > START_OFFSET) {
-      vid.currentTime = START_OFFSET;
-    }
-    vid.play().catch(() => {});
-    monitorVideoLoop(); // نبدأ المراقبة اليدوية
-  });
-  
-  function monitorVideoLoop() {
-    if (!vid.paused && vid.currentTime >= vid.duration - END_OFFSET) {
-      vid.currentTime = START_OFFSET+3;
-      vid.play().catch(() => {});
-    }
-    requestAnimationFrame(monitorVideoLoop); // نراقب باستمرار
-  }
-  
-
-
-  
-  /*const vid = document.getElementById('bg-video');
-  vid?.addEventListener('timeupdate', () => {
-    if (vid.duration - vid.currentTime < 0.4) {
-      vid.currentTime = 0;
-      vid.play();
-    }
-  }); */
-
-
   
   
   
-
-
+  // ❤️ Heart Trail
   function createHeart(x, y) {
     const heart = document.createElement('span');
     heart.className = 'heart-trail';
@@ -78,7 +62,6 @@ window.addEventListener('load', () => {
     heart.style.transform = `rotate(${Math.random() * 360}deg)`;
   
     document.body.appendChild(heart);
-  
     setTimeout(() => heart.remove(), 700);
   }
   
@@ -102,3 +85,4 @@ window.addEventListener('load', () => {
       handleMove(touch.clientX, touch.clientY);
     }
   });
+  
