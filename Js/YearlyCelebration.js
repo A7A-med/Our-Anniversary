@@ -49,7 +49,7 @@ window.addEventListener('load', () => {
   
   
   
-  // ❤️ Heart Trail
+
   function createHeart(x, y) {
     const heart = document.createElement('span');
     heart.className = 'heart-trail';
