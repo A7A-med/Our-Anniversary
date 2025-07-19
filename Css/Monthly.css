@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+  }
+  
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #ff91d2;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .countdown-container {
+    height: 100vh;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+  
+  .countdown-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    font-family: 'Sacramento', cursive;
+    font-size: 7rem;
+    font-weight: 900;
+    color: #ff6b9d;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .countdown-item {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 107, 157, 0.2);
+    border: 2px solid #ff6b9d;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 1s infinite;
+  }
+  
+  .countdown-number {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ff6b9d;
+  }
+  
+  .countdown-label {
+    font-size: 0.8rem;
+    color: #fff;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #ff6b9d;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #ff6b9d;
+    color: #000;
+  }
+  
+  .celebration-mode {
+    background: radial-gradient(circle, #ff8fab, #ffc4d6);
+    animation: pulse 3s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: url('https://cdn.jsdelivr.net/gh/AhmedSameh-dev/assets/confetti.gif') center/cover no-repeat;
+    pointer-events: none;
+  }
+  
+  
+  /* Heart Trail Styles */
+  span.heart-trail {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    animation: fadeInOut 1s linear;
+    z-index: 0; /* تحت النص */
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    20%, 80% {
+      opacity: 1;
+    }
+  }
+  
+  span.heart-trail::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../heart.png'); /* خلي بالك إنك تحط صورة قلب فعليًا باسم heart.png في نفس المجلد */
+    background-size: cover;
+    animation: moveShape 1s linear;
+  }
+  
+  @keyframes moveShape {
+    0% {
+      transform: translate(0) rotate(0deg);
+    }
+    100% {
+      transform: translate(50px) rotate(360deg);
+    }
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      padding: 0 10px;
+    }
+  
+    .countdown {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+  
+    .countdown-item {
+      width: 65px;
+      height: 65px;
+    }
+  
+    .countdown-number {
+      font-size: 1.4rem;
+    }
+  
+    .countdown-label {
+      font-size: 0.7rem;
+    }
+  
+    .btn {
+      font-size: 0.9rem;
+      padding: 10px 25px;
+    }
+  }

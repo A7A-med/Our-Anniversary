@@ -11,27 +11,22 @@ function getNextAnniversary(baseDate) {
   const thisYear = now.getFullYear();
   let target = new Date(baseDate);
   target.setFullYear(thisYear);
-  if (now > target) target.setFullYear(thisYear + 1);
+  //if (now > target) target.setFullYear(thisYear + 1);
   return target;
 }
 
 function updateCountdown() {
   const now = new Date();
-  const targetDate = getNextAnniversary("2025-07-20T00:00:00");
+  const targetDate = getNextAnniversary("2025-07-19T00:00:00");
   const diff = targetDate - now;
 
   if (diff <= 0 && now - targetDate < MS_IN_DAY) {
-    containerEl.classList.add("celebration-mode");
-    overlayEl.style.background = "rgba(255, 255, 255, 0.2)";
-    titleEl.innerText = "🎉 Happy Anniversary 🎉";
-    subtitleEl.innerText = "Every moment with you is a gift";
-    countdownEl.style.display = "none";
-    if (!document.querySelector(".confetti")) {
-      const confetti = document.createElement("div");
-      confetti.className = "confetti";
-      document.body.appendChild(confetti);
-    }
-  } else {
+    // التحويل لصفحة جديدة عند حلول يوم الذكرى
+    window.location.href = "YearlyCelebration.html"; // ← غير الاسم لو الصفحة مختلفة
+    return;
+  }
+  
+  else {
     containerEl.classList.remove("celebration-mode");
     countdownEl.style.display = "flex";
     titleEl.innerText = "Ahmed & Basant";

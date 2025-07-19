@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
 body {
     margin: 0;
     font-family: 'Work Sans', sans-serif;
@@ -6,7 +8,7 @@ body {
     text-align: center;
     overflow: hidden;
   }
-
+  
   #loader {
     position: fixed;
     top: 0; left: 0;
@@ -90,15 +92,33 @@ body {
     font-family: 'Sacramento', cursive;
     font-size: 7rem;
     font-weight: 900;
-    color: #ff6b9d;
     text-align: center;
     margin-bottom: 10px;
+    background: linear-gradient(45deg, #d4af37, #fff8b0, #d4af37);
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shine 2.5s linear infinite;
+  }
+  
+  @keyframes shine {
+    0% {
+      background-position: 200% center;
+    }
+    100% {
+      background-position: 0% center;
+    }
   }
   
   h2 {
-    font-size: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff9de;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 40px;
-    font-weight: 300;
+    padding: 0 10px;
   }
   
   .countdown {
@@ -170,13 +190,13 @@ body {
   }
   
   
-  /* Heart Trail Styles */
+ 
   span.heart-trail {
     position: absolute;
     pointer-events: none;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
     animation: fadeInOut 1s linear;
-    z-index: 0; /* تحت النص */
+    z-index: 0;
   }
   
   @keyframes fadeInOut {
@@ -193,7 +213,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url('heart.png'); /* خلي بالك إنك تحط صورة قلب فعليًا باسم heart.png في نفس المجلد */
+    background: url('../spark.png');
     background-size: cover;
     animation: moveShape 1s linear;
   }

@@ -194,7 +194,7 @@ span.heart-trail::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url('heart.png'); /* خلي بالك إنك تحط صورة قلب فعليًا باسم heart.png في نفس المجلد */
+  background: url('../heart.png'); /* خلي بالك إنك تحط صورة قلب فعليًا باسم heart.png في نفس المجلد */
   background-size: cover;
   animation: moveShape 1s linear;
 }
