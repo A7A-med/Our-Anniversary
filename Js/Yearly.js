@@ -23,7 +23,7 @@ function getNextAnniversary(baseDate) {
 
 function updateCountdown() {
   const now = new Date();
-  const targetDate = getNextAnniversary("2025-09-20T00:00:00");
+  const targetDate = getNextAnniversary("2026-09-20T00:00:00");
   const diff = targetDate - now;
 
   if (diff <= 0 && now - targetDate < MS_IN_DAY) {
