@@ -10,10 +10,16 @@ function getNextAnniversary(baseDate) {
   const now = new Date();
   const thisYear = now.getFullYear();
   let target = new Date(baseDate);
+
   target.setFullYear(thisYear);
-  //if (now > target) target.setFullYear(thisYear + 1);
+
+  if (target < now) {
+    target.setFullYear(thisYear + 1);
+  }
+
   return target;
 }
+
 
 function updateCountdown() {
   const now = new Date();
