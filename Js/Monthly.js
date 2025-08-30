@@ -17,8 +17,18 @@ const MS_IN_DAY = 1000 * 60 * 60 * 24;
 })();
 
 function getNextAnniversary(baseDate) {
-  return new Date(baseDate); // التاريخ ثابت لا يتجدد تلقائيًا
+  const now = new Date();
+  const base = new Date(baseDate);
+
+  let target = new Date(now.getFullYear(), now.getMonth(), base.getDate());
+
+  if (now > target) {
+    target.setMonth(target.getMonth() + 1);
+  }
+
+  return target;
 }
+
 
 function updateCountdown() {
   const now = new Date();
